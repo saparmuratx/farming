@@ -1,4 +1,4 @@
-from django.db import models
+from django.contrib.gis.db import models
 
 
 class Farmer(models.Model):
@@ -21,3 +21,10 @@ class Season(models.Model):
 
     def __str__(self) -> str:
         return self.name
+
+
+class Plot(models.Model):
+    contour = models.PolygonField()
+    farmer = models.ForeignKey(Farmer, on_delete=models.CASCADE)
+    culture = models.ForeignKey(Culture, on_delete=models.CASCADE)
+    season = models.ForeignKey(Season, on_delete=models.CASCADE)
