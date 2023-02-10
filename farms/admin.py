@@ -1,3 +1,12 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import (
+    Farmer,
+    Culture,
+    Season,
+)
+
+
+admin.site.register(Farmer)
+admin.site.register(Culture)
+admin.site.register(Season)
