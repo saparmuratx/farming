@@ -1,4 +1,5 @@
 from django.contrib.gis.db import models
+from django.conf import settings
 
 
 class Farmer(models.Model):
@@ -25,6 +26,6 @@ class Season(models.Model):
 
 class Plot(models.Model):
     contour = models.PolygonField()
-    farmer = models.ForeignKey(Farmer, on_delete=models.CASCADE)
+    farmer = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     culture = models.ForeignKey(Culture, on_delete=models.CASCADE)
     season = models.ForeignKey(Season, on_delete=models.CASCADE)

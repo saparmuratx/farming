@@ -17,13 +17,13 @@ admin.site.register(Season)
 @admin.register(Plot)
 class PlotAdmin(OSMGeoAdmin):
     search_fields = (
-        "farmer__name",
+        "farmer__first_name",
         "culture__name",
         "season__name",
     )
 
     list_filter = (
-        "farmer__name",
+        "farmer__first_name",
         "culture__name",
         "season__name",
     )

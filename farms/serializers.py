@@ -8,6 +8,7 @@ class PlotSerializer(serializers.GeoFeatureModelSerializer):
         model = Plot
         geo_field = "contour"
         fields = (
+            "id",
             "farmer",
             "culture",
             "season",

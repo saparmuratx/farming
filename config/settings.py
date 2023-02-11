@@ -44,8 +44,11 @@ INSTALLED_APPS = [
     # third-party
     "rest_framework",
     "rest_framework_gis",
+    "rest_framework.authtoken",
+    "drf_registration",
     # local
     "farms",
+    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -118,7 +121,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = "en-us"
 
-TIME_ZONE = "UTC"
+TIME_ZONE = "Asia/Bishkek"
 
 USE_I18N = True
 
@@ -134,3 +137,17 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+AUTH_USER_MODEL = "accounts.CustomUser"
+
+AUTHENTICATION_BACKENDS = [
+    "drf_registration.auth.MultiFieldsModelBackend",
+]
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.TokenAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+    ],
+}
