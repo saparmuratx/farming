@@ -15,3 +15,9 @@ class PlotView(ModelViewSet):
         IsAuthenticatedOrReadOnly,
         IsAuthorOrReadOnly,
     )
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.is_staff:
+            return Plot.objects.all()
+        return Plot.objects.filter(farmer=user)
