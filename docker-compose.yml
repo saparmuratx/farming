@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  postgis:
+    container_name: postgis
+    environment:
+      - POSTGRES_USER=user001
+      - POSTGRES_PASS=123456789
+      - POSTGRES_DBNAME=gis
+    ports:
+      - '5432:5432'
+    image: kartoza/postgis
+
+  web:
+    environment:
+      - SECRET_KEY=3zSv5FK-K5QzEffCWk49R_8wS86JIXizahz16zuBbV8
+      - ALLOWED_HOSTS=localhost,127.0.0.1
+      - DB_ENGINE=django.contrib.gis.db.backends.postgis
+      - DB_NAME=gis
+      - DB_USER=user001
+      - DB_PASSWORD=123456789
+      - DB_HOST=postgis
+      - DB_PORT=5432
+    build: .
+    command: bash -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    container_name: farming
+    volumes:
+      - .:/farming
+    ports:
+      - "8000:8000"

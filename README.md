@@ -18,37 +18,66 @@ $ source /venv/bin/activate
 $(venv) pip install -r requirements.txt 
 ```
 
-Before running project you have to set environment variables in .env file
+Before running project you have to set environment variables in .env file. When running without Docker.
 
 ```
+
 touch .env
+
 ```
 
 specify following variables inside .env file:
 
 ```
+
 SECRET_KEY="{your secret key for project}"
 
-# use False in deployment
+## use False in deployment
+
 DEBUG=True
 
 ALLOWED_HOSTS="localhost,127.0.0.1"
 
+DB_ENGINE="django.contrib.gis.db.backends.postgis"
+DB_NAME="gis"
+DB_USER="user001"
+DB_PASSWORD="123456789"
+DB_HOST="localhost"
+DB_PORT="5432"
+
 ```
 
-## Running the tests
+<!-- ## Running the tests
 
 Tests will be located in shopapp/test folder
 
 ```
 python3 manage.py test
+``` -->
+
+## Deployment with Docker
+
+There is a Dockerfile and docker-compose.yml for deploying with Docker
+
+You can configure some environment variables in docker-compose.yml:
+
 ```
 
-## Deployment
+web:
+    environment:
+      - DB_NAME=gis
+      - DB_USER=user
+      - DB_PASSWORD=password
 
-currently there are no deployment details
+```
 
-they will be added soon
+After configuring run:
+
+```
+
+docker compuse up
+
+```
 
 ## Authors
 
