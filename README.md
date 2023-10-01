@@ -75,7 +75,7 @@ After configuring run:
 
 ```
 
-docker compuse up
+docker compose up
 
 ```
 
